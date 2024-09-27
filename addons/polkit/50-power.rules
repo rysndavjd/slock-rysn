@@ -1,0 +1,12 @@
+const power_actions = [
+  'org.freedesktop.login1.reboot',
+  'org.freedesktop.login1.reboot-multiple-sessions',
+  'org.freedesktop.login1.power-off',
+  'org.freedesktop.login1.power-off-multiple-sessions'
+];
+
+polkit.addRule(function ({ id }, subject) {
+  if (power_actions.includes(id)) {
+    return subject.isInGroup('slock') ? polkit.Result.YES : polkit.Result.AUTH_ADMIN;
+  }
+});
