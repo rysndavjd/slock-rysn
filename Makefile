@@ -52,7 +52,8 @@ install: all
 	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	@sed "s/VERSION/${VERSION}/g" <slock.1 >${DESTDIR}${MANPREFIX}/man1/slock.1
 	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/slock.1
-	@mkdir ${DESTDIR}/etc/polkit-1/rules.d
+	@echo installing polkit rule ${DESTDIR}/etc/polkit-1/rules.d
+	@mkdir -p ${DESTDIR}/etc/polkit-1/rules.d
 	@cp -f addons/polkit/50-poweroff.rules ${DESTDIR}/etc/polkit-1/rules.d/50-poweroff.rules
 	@chmod 700 ${DESTDIR}/etc/polkit-1/rules.d/50-poweroff.rules
 	@chown polkitd: ${DESTDIR}/etc/polkit-1/rules.d/50-poweroff.rules
